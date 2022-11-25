@@ -9,6 +9,7 @@ body{
 
 .calculator-grid{
     display: grid;
+    justify-content: center;
     margin-top: 2rem;
     grid-template-columns: repeat(4,6rem);
     grid-template-rows: minmax(7rem,auto) repeat(5,6rem);
@@ -29,10 +30,23 @@ body{
     word-wrap: break-word;
     word-break: break-all;
 }
+.calculator-grid > button:hover,
+.calculator-grid > button:focus{
+    background-color: rgba(255, 255, 255, .9);
+
+}
+.calculator-grid > button{
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
 
 .output .previus-output{
     color: rgb(255, 255, 255,.75);
     font-size: 1.5rem;
+   
 }
 
 .output .current-output{
