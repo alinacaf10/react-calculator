@@ -12,6 +12,13 @@ export const ACTIONS = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
+      if(state.overwrite){
+      return{
+        ...state,
+        currentOperand:payload.digit,
+        overwrite:false
+      }
+      }
       if (payload.digit === "0" && state.currentOperand === "0") {
         return state;
       }
@@ -27,6 +34,11 @@ function reducer(state, { type, payload }) {
       if (state.currentOperand == null && state.previusOperand == null) {
         return state;
       }
+      if (state.currentOperand==null) {
+        return{
+        ...state,
+        operation: payload.operation,
+      }}
       if (state.previusOperand == null) {
         return {
           ...state,
@@ -43,6 +55,17 @@ function reducer(state, { type, payload }) {
       };
     case ACTIONS.CLEAR:
       return {};
+    case ACTIONS.EVALUATE:
+      if(state.operation==null||state.currentOperand==null||state.previusOperand==null){
+        return state
+      }
+      return{
+        ...state,
+        overwrite:true,
+        previusOperand:null,
+        operation:null,
+        currentOperand:evaluate(state)
+      }
   }
 }
 function evaluate({ currentOperand, previusOperand, operation }) {
@@ -104,7 +127,7 @@ function App() {
 
       <DigitButton digit="." dispatch={dispatch} />
       <DigitButton digit="0" dispatch={dispatch} />
-      <button className="span-two">=</button>
+      <button className="span-two"  onClick={() => dispatch({ type: ACTIONS.EVALUATE })}>=</button>
     </div>
   );
 }
