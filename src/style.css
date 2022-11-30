@@ -2,6 +2,7 @@
     box-sizing: border-box;
 }
 
+
 body{
     margin: 0;
     background: linear-gradient(to left, rgb(100, 190, 219),rgb(100, 219, 100));
@@ -32,7 +33,7 @@ body{
 }
 .calculator-grid > button:hover,
 .calculator-grid > button:focus{
-    background-color: rgba(255, 255, 255, .9);
+    background-color: rgba(255, 255, 254, .9);
 
 }
 .calculator-grid > button{
